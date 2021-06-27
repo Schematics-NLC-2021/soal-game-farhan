@@ -6,8 +6,6 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePreFab;
-    //[SerializeField] private Tile _tileSoalPreFab;
-    //[SerializeField] private Tile _tileBg;
 
 
 
@@ -40,9 +38,7 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(_tilePreFab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
-
-
-
+                spawnedTile.PosisiAngka(x, y);
                 //var isOffset = (x + y) % 2 == 1;
                 //spawnedTile.Init(isOffset);
             }
