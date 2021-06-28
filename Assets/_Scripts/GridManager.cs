@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePreFab;
 
-
-
     [SerializeField] private Transform _cam;
     [SerializeField] private Transform _backGround;
 
+    private Dictionary<Vector2, Tile> tiles;
+    int[] kunciJawaban = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 }; //kunciJawaban
+    int[] jawabanPlayer = new int[25];
+
+    int totalSkor = 0;
+    public Text skor;
+    [SerializeField] private GameObject skorTeks;
 
     void Start()
     {
@@ -20,31 +26,57 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
+        tiles = new Dictionary<Vector2, Tile>();
         for(int x = 0; x < _width; x++)
         {
             for(int y = 0; y < _height; y++)
             {
-                //if((x == 0 && y == 0) || (x == 0 && y == 1) || (x == 1 && y == 0) || (x == 1 && y == 1))
-                //{
-                //    var spawnedTileBg = Instantiate(_tileBg, new Vector3(x, y), Quaternion.identity);
-                //    spawnedTileBg.name = $"TileBg {x} {y}";
-                //}
-                //else if(x < 2 || y < 2)
-                //{
-                //   var spawnedTileSoal = Instantiate(_tileSoalPreFab, new Vector3(x, y), Quaternion.identity);
-                //    spawnedTileSoal.name = $"TileSoal {x} {y}";
-                //}
-
                 var spawnedTile = Instantiate(_tilePreFab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
                 spawnedTile.PosisiAngka(x, y);
-                //var isOffset = (x + y) % 2 == 1;
-                //spawnedTile.Init(isOffset);
+
+                tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
 
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
         _backGround.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -9);
+
+        
+    }
+
+    //fungsi cekSkor saat button Done
+    public void cekSkor()
+    {
+        int index = 0;
+        for(int x = 0; x < _width; x++)
+        {
+            for(int y = 0; y < _height; y++)
+            {
+                Vector2 pos = new Vector2(x, y);
+                if(tiles[pos].hitam == 1)
+                {
+                    jawabanPlayer[index] = -1;
+                }
+                else if(tiles[pos].hitam == 0)
+                {
+                    jawabanPlayer[index] = tiles[pos].a;
+                }
+                index++;
+            }
+        }
+
+        //Cek jawaban dengan kunci
+        for(int z = 0; z < 25; z++)
+        {
+            if(jawabanPlayer[z] == kunciJawaban[z])
+            {
+                totalSkor++;
+            }
+        }
+        skorTeks.SetActive(true);
+        skor.text = totalSkor + " of 25";
+        totalSkor = 0;
     }
 }

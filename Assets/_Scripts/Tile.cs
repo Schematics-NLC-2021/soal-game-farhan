@@ -26,10 +26,8 @@ public class Tile : MonoBehaviour
     [SerializeField] public Text enam;
 
 
-
-
-    int a = 0;
-    int hitam = 0;
+    public int a = 0;
+    public int hitam = 0;
 
 
     public void PosisiAngka(int x, int y)
@@ -42,11 +40,6 @@ public class Tile : MonoBehaviour
         enam.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
     }
 
-
-    //public void Init(bool isOffset)
-    //{
-    //    _renderer.color = isOffset ? _offsetColor : _baseColor;
-    //}
 
     private void OnMouseEnter()
     {
