@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GridManager : MonoBehaviour
 {
+    public GameObject canvas;
+    public GameObject endCanvas;
+
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePreFab;
 
@@ -12,12 +16,14 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _backGround;
 
     private Dictionary<Vector2, Tile> tiles;
-    int[] kunciJawaban = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 }; //kunciJawaban
+    int[] kunciJawaban = { 1, 5, 3, 4, 2, 3, -1, 2, 1, -1, -1, 4, 1, 5, 3, 5, 1, -1, 2, 4, 2, -1, 4, 3, 1 }; //kunciJawaban
     int[] jawabanPlayer = new int[25];
 
     int totalSkor = 0;
     public Text skor;
     [SerializeField] private GameObject skorTeks;
+
+    public AudioSource submitClick;
 
     void Start()
     {
@@ -49,6 +55,7 @@ public class GridManager : MonoBehaviour
     //fungsi cekSkor saat button Done
     public void cekSkor()
     {
+        submitClick.Play();
         int index = 0;
         for(int x = 0; x < _width; x++)
         {
@@ -63,6 +70,7 @@ public class GridManager : MonoBehaviour
                 {
                     jawabanPlayer[index] = tiles[pos].a;
                 }
+                Destroy(tiles[pos]);
                 index++;
             }
         }
@@ -78,5 +86,7 @@ public class GridManager : MonoBehaviour
         skorTeks.SetActive(true);
         skor.text = totalSkor + " of 25";
         totalSkor = 0;
+        canvas.SetActive(false);
+        endCanvas.SetActive(true);
     }
 }

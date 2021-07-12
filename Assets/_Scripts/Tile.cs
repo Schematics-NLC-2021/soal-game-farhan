@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Tile : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class Tile : MonoBehaviour
     [SerializeField] public Text lima;
     [SerializeField] public Text enam;
 
+    public AudioSource clickSource;
+
 
     public int a = 0;
     public int hitam = 0;
@@ -32,12 +35,12 @@ public class Tile : MonoBehaviour
 
     public void PosisiAngka(int x, int y)
     {
-        satu.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
-        dua.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
-        tiga.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
-        empat.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
-        lima.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
-        enam.rectTransform.localPosition = new Vector3((float)(x - 2) * 30.5f, (float)(y - 2) * 30.5f);
+        satu.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        dua.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        tiga.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        empat.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        lima.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        enam.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
     }
 
 
@@ -55,47 +58,56 @@ public class Tile : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && a == 0 && hitam == 0)
         {
+            clickSource.Play();
             angka1.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 1 && hitam == 0)
         {
+            clickSource.Play();
             angka1.SetActive(false);
             angka2.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 2 && hitam == 0)
         {
+            clickSource.Play();
             angka2.SetActive(false);
             angka3.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 3 && hitam == 0)
         {
+            clickSource.Play();
             angka3.SetActive(false);
             angka4.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 4 && hitam == 0)
         {
+            clickSource.Play();
             angka4.SetActive(false);
             angka5.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 5 && hitam == 0)
         {
+            clickSource.Play();
             angka5.SetActive(false);
             angka6.SetActive(true);
             ++a;
         }
         else if (Input.GetMouseButtonDown(0) && a == 6 && hitam == 0)
         {
+            clickSource.Play();
             angka6.SetActive(false);
-            a = 0;
+            angka1.SetActive(true);
+            a = 1;
         }
 
         if (Input.GetMouseButtonDown(1) && hitam == 0)
         {
+            clickSource.Play();
             Black.SetActive(true);
             hitam = 1;
             if (a == 1)
@@ -126,6 +138,7 @@ public class Tile : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && hitam == 1)
         {
+            clickSource.Play();
             Black.SetActive(false);
             hitam = 0;
             if(a == 1)
