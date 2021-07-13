@@ -35,12 +35,12 @@ public class Tile : MonoBehaviour
 
     public void PosisiAngka(int x, int y)
     {
-        satu.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
-        dua.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
-        tiga.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
-        empat.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
-        lima.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
-        enam.rectTransform.localPosition = new Vector3((float)(x - 2) * 42.5f, (float)(y - 2) * 42.5f);
+        satu.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
+        dua.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
+        tiga.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
+        empat.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
+        lima.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
+        enam.rectTransform.localPosition = new Vector3((float)(x - 2) * 47.5f, (float)(y - 2) * 47.5f);
     }
 
 
