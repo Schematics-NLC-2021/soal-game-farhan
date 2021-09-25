@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using System.Runtime.InteropServices;
 
 public class GridManager : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void sendScore(int score);
+    [DllImport("__Internal")]
+    private static extern bool confirmActionfunc(int score);
+
     public GameObject canvas;
     public GameObject endCanvas;
 
@@ -85,8 +91,8 @@ public class GridManager : MonoBehaviour
         }
         skorTeks.SetActive(true);
         skor.text = totalSkor + " of 25";
-        totalSkor = 0;
         canvas.SetActive(false);
         endCanvas.SetActive(true);
+        sendScore(totalSkor);
     }
 }
